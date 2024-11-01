@@ -1,30 +1,14 @@
 import { Injectable } from '@angular/core';
-import {signUp} from 'aws-amplify/auth';
-
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor() {}
 
-  constructor() {
-  }
+  signin() {}
 
-  signin(){
+  signUp(username: string, email: string, password: string) {}
 
-  }
-
-  signUp(username:string,email: string, password: string) {
-    return signUp({
-      username,
-      password,
-      options:{
-        userAttributes:{
-          email
-        }
-      }
-    });
-}
-
-  confirm(){}
+  confirm() {}
 }

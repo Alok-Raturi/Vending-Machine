@@ -12,7 +12,7 @@ import { AuthService } from '../../../services/auth.service';
   encapsulation:ViewEncapsulation.None
 })
 export class LoginComponent {
-  username = '';
+  email = '';
   password = '';
   errorMessage = '';
 
