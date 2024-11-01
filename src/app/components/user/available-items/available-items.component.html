@@ -1,0 +1,6 @@
+<h1 class="heading">Available Items</h1>
+<div class="product-grid">
+  @for (item of products; track item?.Code?.S) {
+    <app-item [product]="item"></app-item>
+  }
+</div>
