@@ -27,4 +27,8 @@ export class ItemComponent {
       'S':string
     }
   }>();
+
+  dispatchDialog(){
+
+  }
 }

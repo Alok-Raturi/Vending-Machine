@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemComponent } from './item/item.component';
-import { ItemsServiceService } from '../../../services/items-service.service';
 import { DisplayUserInfoComponent } from './display-user-info/display-user-info.component';
+import { ItemsService } from '../../../services/items.service';
+import { ConsiderationsComponent } from '../considerations/considerations.component';
 
 interface Product{
   Code:{
@@ -24,7 +25,7 @@ interface Product{
 @Component({
   selector: 'app-available-items',
   standalone: true,
-  imports: [ItemComponent,DisplayUserInfoComponent],
+  imports: [ItemComponent,DisplayUserInfoComponent,ConsiderationsComponent],
   templateUrl: './available-items.component.html',
   styleUrl: './available-items.component.css',
 })
@@ -105,7 +106,7 @@ export class AvailableItemsComponent implements OnInit {
   //   },
   // ];
   products:Product[]=[]
-  constructor(private itemService: ItemsServiceService){}
+  constructor(private itemService: ItemsService){}
 
   ngOnInit(): void {
     this.itemService.fetchItems().subscribe((data:any)=>{
