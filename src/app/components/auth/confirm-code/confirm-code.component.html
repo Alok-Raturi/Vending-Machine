@@ -1,0 +1,7 @@
+<form (ngSubmit)="OnSubmit()" class="confirmation-form">
+  <h3>Enter Confirmation Code</h3>
+  <div class="input-container">
+      <input type="text" [(ngModel)]="code" placeholder="Enter code" required name="code">
+  </div>
+  <button type="submit" class="submit-button">Submit</button>
+</form>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemComponent } from './item/item.component';
 import { ItemsServiceService } from '../../../services/items-service.service';
-import { map } from 'rxjs';
+import { DisplayUserInfoComponent } from './display-user-info/display-user-info.component';
 
 interface Product{
   Code:{
@@ -24,7 +24,7 @@ interface Product{
 @Component({
   selector: 'app-available-items',
   standalone: true,
-  imports: [ItemComponent],
+  imports: [ItemComponent,DisplayUserInfoComponent],
   templateUrl: './available-items.component.html',
   styleUrl: './available-items.component.css',
 })

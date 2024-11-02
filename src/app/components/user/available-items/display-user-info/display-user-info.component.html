@@ -1,0 +1,9 @@
+<div>
+  @if (!isAuthenticated) {
+    <h1>Please login/register first to buy items</h1>
+  }@else{
+    <h1>User Information</h1>
+    <h3>User email : {{user.email}}</h3>
+    <p>Balance : {{user.balance}}</p>
+  }
+</div>

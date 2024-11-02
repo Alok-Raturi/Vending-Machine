@@ -1,0 +1,52 @@
+/* Styles for the confirmation form */
+.confirmation-form {
+  max-width: 400px; /* Set a max width for the form */
+  margin: 50px auto; /* Center the form on the page */
+  padding: 20px; /* Add some padding */
+  background-color: #f9f9f9; /* Light background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.confirmation-form h3 {
+  text-align: center; /* Center the heading */
+  color: #333; /* Darker text color for better readability */
+}
+
+.input-container {
+  margin-bottom: 20px; /* Spacing between input and button */
+}
+
+input[type="text"] {
+  width: 100%; /* Full width input */
+  padding: 10px; /* Inner padding for the input */
+  border: 2px solid #007bff; /* Border color */
+  border-radius: 5px; /* Rounded corners for input */
+  font-size: 16px; /* Font size for input text */
+  transition: border-color 0.3s; /* Smooth transition for border color */
+}
+
+input[type="text"]:focus {
+  border-color: #0056b3; /* Darker blue on focus */
+  outline: none; /* Remove default outline */
+}
+
+.submit-button {
+  width: 100%; /* Full width button */
+  padding: 10px; /* Inner padding for button */
+  background-color: #007bff; /* Button background color */
+  color: white; /* Text color for button */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Rounded corners for button */
+  font-size: 16px; /* Font size for button text */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, transform 0.2s; /* Smooth transitions for hover effects */
+}
+
+.submit-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+.submit-button:active {
+  transform: scale(0.98); /* Slightly shrink button on click for effect */
+}
