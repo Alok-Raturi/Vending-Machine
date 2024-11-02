@@ -1,11 +1,12 @@
 import { TagModule } from 'primeng/tag';
 import { CurrencyPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-item',
   standalone: true,
-  imports: [CurrencyPipe,TagModule],
+  imports: [CurrencyPipe,TagModule,ButtonModule],
   templateUrl: './item.component.html',
   styleUrl: './item.component.css',
 })

@@ -1,51 +1,47 @@
 
-/* Container for the form */
 div {
-  background-color: #fff; /* White background for the form */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  padding: 20px; /* Spacing inside the form */
-  width: 300px; /* Fixed width for the form */
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
   margin: 0 auto;
   margin-top: 2rem;
 }
 
-/* Heading style */
 h1 {
-  font-size: 24px; /* Larger font size for the heading */
-  text-align: center; /* Center the heading text */
-  margin-bottom: 20px; /* Space below the heading */
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-/* Input field styles */
 input[type="number"] {
-  width: 100%; /* Full width of the container */
-  padding: 10px; /* Inner spacing within the input */
-  border: 2px solid #ccc; /* Light gray border */
-  border-radius: 5px; /* Rounded corners */
-  box-sizing: border-box; /* Include padding and border in element's total width and height */
-  margin-bottom: 20px; /* Space below the input field */
-  font-size: 16px; /* Font size for input text */
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  font-size: 16px;
 }
 
-/* Input focus effect */
 input[type="number"]:focus {
-  border-color: #62529c; /* Change border color on focus */
-  outline: none; /* Remove default outline */
+  border-color: #62529c;
+  outline: none;
 }
 
-/* Submit button styles */
+
 button[type="submit"] {
-  background-color: #62529c; /* Button background color */
-  color: white; /* Text color for the button */
-  padding: 10px; /* Inner spacing within the button */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Rounded corners for button */
-  cursor: pointer; /* Pointer cursor on hover */
-  font-size: 16px; /* Font size for button text */
+  background-color: #62529c;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-/* Button hover effect */
+
 button[type="submit"]:hover {
-  background-color: #4b3e7a; /* Darker shade on hover for visual feedback */
+  background-color: #4b3e7a;
 }

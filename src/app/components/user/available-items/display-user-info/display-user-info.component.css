@@ -1,49 +1,45 @@
-/* General styles for the container */
+
 div {
-  max-width: 600px; /* Set a maximum width for the container */
-  margin: 20px auto; /* Center the container on the page */
-  padding: 20px; /* Add padding inside the container */
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  background-color: #f9f9f9; /* Light background color */
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
 }
 
-/* Style for h1 elements */
 h1 {
-  font-size: 24px; /* Larger font size for main headings */
-  color: #333; /* Dark gray color for text */
-  text-align: center; /* Center align the heading */
+  font-size: 24px;
+  color: #333;
+  text-align: center;
 }
 
-/* Style for h3 elements */
 h3 {
-  font-size: 20px; /* Slightly smaller font size for subheadings */
-  color: #555; /* Medium gray color for text */
-  margin-top: 10px; /* Space above the subheading */
+  font-size: 20px;
+  color: #555;
+  margin-top: 10px;
 }
 
-/* Style for p elements */
 p {
-  font-size: 16px; /* Standard font size for paragraphs */
-  color: #777; /* Light gray color for text */
-  margin-top: 5px; /* Space above the paragraph */
+  font-size: 16px;
+  color: #777;
+  margin-top: 5px;
 }
 
-/* Additional styles for responsive design */
 @media (max-width: 600px) {
   div {
-      padding: 15px; /* Reduce padding on smaller screens */
+      padding: 15px;
   }
 
   h1 {
-      font-size: 22px; /* Adjust heading size for smaller screens */
+      font-size: 22px;
   }
 
   h3 {
-      font-size: 18px; /* Adjust subheading size for smaller screens */
+      font-size: 18px;
   }
 
   p {
-      font-size: 14px; /* Adjust paragraph size for smaller screens */
+      font-size: 14px;
   }
 }
