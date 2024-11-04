@@ -1,0 +1,19 @@
+<div class="container">
+  <div>
+  <h1>Product Info</h1>
+  <div>
+    <div class="product-card" >
+      <img [src]="product?.imagesrc?.S" alt="{{ product?.name?.S }}" />
+      <h3>{{ product?.name?.S }}</h3>
+      <p-tag [severity]="'danger'">Units left - {{ product?.stock?.N }}</p-tag>
+      <p>Price: {{ product?.price?.N | currency:'USD' }}</p>
+    </div>
+  </div>
+</div>
+<div class="billing">
+  <p>Your balance : {{user?.balance}}</p>
+  <p>Product cost : {{-product?.price?.N}}</p>
+  <p>Remaining balance: {{user?.balance-product?.price?.N}}</p>
+  <button (click)="dispatch()">Dispatch</button>
+</div>
+</div>

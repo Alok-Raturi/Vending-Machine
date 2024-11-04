@@ -24,11 +24,9 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.authService.signUp(this.email, this.password).subscribe({
       next:(data)=>{
-        console.log(data)
         this.router.navigate(['/confirm'])
       },
       error: (err) => {
-        console.log(err)
         this.errorMessage = err.message;
       },
     });

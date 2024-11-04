@@ -3,7 +3,7 @@
     <h1>Please login/register first to buy items</h1>
   }@else{
     <h1>User Information</h1>
-    <h3>User email : {{user.email}}</h3>
-    <p>Balance : {{user.balance}}</p>
+    <h3>User email : {{user && user.email?user.email:'test@gmail.com'}}</h3>
+    <p>Balance : {{user && user.balance?user.balance:'---'}}</p>
   }
 </div>

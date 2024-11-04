@@ -14,6 +14,18 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
+  setTokens(){
+    if (typeof window !== 'undefined') {
+      let tokens = JSON.parse(localStorage.getItem('user-tokens') as string)
+      if(tokens){
+        this.idToken = tokens.idToken,
+        this.email = tokens.email,
+        this.accessToken = tokens.accessToken,
+        this.refreshToken = tokens.refreshToken
+      }
+    }
+  }
+
   signin(email: string, password: string) {
     return this.http
       .post(
@@ -30,6 +42,12 @@ export class AuthService {
             this.idToken = data.idToken;
             this.accessToken = data.accessToken;
             this.refreshToken = data.refreshToken;
+            localStorage.setItem("user-tokens",JSON.stringify({
+              email:email,
+              idToken: data.idToken,
+              accessToken: data.accessToken,
+              refreshToken: data.refreshToken
+            }))
           },
         })
       );
@@ -83,6 +101,7 @@ export class AuthService {
               this.refreshToken =
               this.email =
                 '';
+                localStorage.removeItem('user-tokens')
           },
         })
       );

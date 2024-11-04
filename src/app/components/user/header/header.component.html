@@ -16,20 +16,23 @@
       label="Logout"
       (onClick)="logout()"
       outlined="true"
-      severity="danger" />
+      severity="danger"
+      />
     </div>
   }@else{
   <div>
     <p-button
     label="Login"
     outlined="true"
-    severity="danger" />
+    severity="danger"
+    [routerLink]="'/login'" />
   </div>
   <div>
     <p-button
     label="Signup"
     outlined="true"
-    severity="danger" />
+    severity="danger"
+    [routerLink]="'signup'" />
   </div>
 }
 </nav>

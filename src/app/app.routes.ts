@@ -14,6 +14,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { inject } from '@angular/core';
+import { BuyItemComponent } from './components/user/buy-item/buy-item.component';
 
 export const isLoggedIn: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -24,7 +25,7 @@ export const isLoggedIn: CanActivateFn = (
   if(authService.isTokenAvailable){
     return true;
   }
-  router.navigate(['/home'])
+  router.navigate(['/login'])
   return false
 };
 
@@ -53,6 +54,11 @@ export const routes: Routes = [
   {
     path:'add-balance',
     component: UpdateBalanceComponent,
+    canActivate:[isLoggedIn]
+  },
+  {
+    path:'buy/:code',
+    component: BuyItemComponent,
     canActivate:[isLoggedIn]
   }
 ];

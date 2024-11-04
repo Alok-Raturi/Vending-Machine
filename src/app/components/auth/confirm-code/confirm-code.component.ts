@@ -16,7 +16,6 @@ export class ConfirmCodeComponent {
   OnSubmit(){
     console.log(this.code)
       this.authService.confirm(this.code).subscribe((data)=>{
-        console.log("Successfully Confirmed Code")
         this.router.navigate(['/login'])
       })
   }
