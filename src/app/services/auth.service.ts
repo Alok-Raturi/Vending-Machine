@@ -7,23 +7,24 @@ import { tap } from 'rxjs';
 })
 export class AuthService {
   email!: string;
-  idToken!: string;
+
   accessToken!: string;
-  refreshToken!: string;
   user!: any;
+  role!:'User'|'Admin'
 
   constructor(private http: HttpClient) {}
 
-  setTokens(){
+  setTokens() {
     if (typeof window !== 'undefined') {
-      let tokens = JSON.parse(localStorage.getItem('user-tokens') as string)
-      if(tokens){
-        this.idToken = tokens.idToken,
-        this.email = tokens.email,
-        this.accessToken = tokens.accessToken,
-        this.refreshToken = tokens.refreshToken
+      let tokens = JSON.parse(localStorage.getItem('user-tokens') as string);
+      if (tokens) {
+        (this.email = tokens.email), (this.accessToken = tokens.accessToken),(this.role = tokens.role);
       }
     }
+  }
+
+  get roleValue(){
+    return this.role==='Admin'?1:0
   }
 
   signin(email: string, password: string) {
@@ -39,15 +40,18 @@ export class AuthService {
         tap({
           next: (data: any) => {
             this.email = email;
-            this.idToken = data.idToken;
+
             this.accessToken = data.accessToken;
-            this.refreshToken = data.refreshToken;
-            localStorage.setItem("user-tokens",JSON.stringify({
-              email:email,
-              idToken: data.idToken,
-              accessToken: data.accessToken,
-              refreshToken: data.refreshToken
-            }))
+            this.role = data.role
+
+            localStorage.setItem(
+              'user-tokens',
+              JSON.stringify({
+                email: email,
+                accessToken: data.accessToken,
+                role:data.role
+              })
+            );
           },
         })
       );
@@ -96,34 +100,37 @@ export class AuthService {
       .pipe(
         tap({
           next: () => {
-            this.accessToken =
-              this.idToken =
-              this.refreshToken =
-              this.email =
-                '';
-                localStorage.removeItem('user-tokens')
+            this.accessToken = this.email = '';
+            localStorage.removeItem('user-tokens');
           },
         })
       );
   }
 
   get isTokenAvailable() {
-    return this.accessToken && this.refreshToken && this.idToken && this.email;
+    return this.accessToken && this.email;
   }
 
   getUser() {
-    return this.http.get('https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/user', {
-      headers: new HttpHeaders().set('Authorization', this.accessToken),
-    });
+    return this.http.get(
+      'https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/user',
+      {
+        headers: new HttpHeaders().set('Authorization', this.accessToken),
+      }
+    );
   }
 
-  addAmount(amount:string){
-    return this.http.post('https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/update-balance',{
-      body:{
-        amount
+  addAmount(amount: string) {
+    return this.http.post(
+      'https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/update-balance',
+      {
+        body: {
+          amount,
+        },
+      },
+      {
+        headers: new HttpHeaders().set('Authorization', this.accessToken),
       }
-    },{
-      headers: new HttpHeaders().set('Authorization', this.accessToken),
-    })
+    );
   }
 }

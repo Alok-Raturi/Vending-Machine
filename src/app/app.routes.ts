@@ -29,6 +29,8 @@ export const isLoggedIn: CanActivateFn = (
   return false
 };
 
+
+
 export const routes: Routes = [
   {
     path:'',
@@ -41,15 +43,15 @@ export const routes: Routes = [
   },
   {
     path:'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path:'signup',
-    component:SignupComponent
+    component:SignupComponent,
   },
   {
     path:'confirm',
-    component:ConfirmCodeComponent
+    component:ConfirmCodeComponent,
   },
   {
     path:'add-balance',

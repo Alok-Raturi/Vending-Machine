@@ -39,10 +39,9 @@ export class BuyItemComponent implements OnInit {
   }
 
   dispatch() {
-    let price = this.product.price['N'];
-    let quantity = this.product.stock['N'];
-    let balance = this.user.balance;
-
+    let price = parseInt(this.product.price['N']);
+    let quantity = parseInt(this.product.stock['N']);
+    let balance = parseInt(this.user.balance);
     if (quantity >= 1) {
       if (balance >= price) {
         this.authService.addAmount(`-${price}`).subscribe({
@@ -60,5 +59,6 @@ export class BuyItemComponent implements OnInit {
     } else {
       this.error = 'Product out of stock';
     }
+    console.log(this.error)
   }
 }

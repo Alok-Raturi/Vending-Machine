@@ -2,6 +2,6 @@
   <img [src]="product()?.imagesrc?.S" alt="{{ product()?.name?.S }}" />
   <h3>{{ product()?.name?.S }}</h3>
   <p-tag [severity]="'danger'">Units left - {{ product()?.stock?.N }}</p-tag>
-  <p>Price: {{ product()?.price?.N | currency:'USD' }}</p>
+  <p>Price: {{ product()?.price?.N | currency:'INR' }}</p>
   <p-button label="Buy" outlined="true" severity="success" [routerLink]="['/buy',product()?.Code?.S]" />
 </div>

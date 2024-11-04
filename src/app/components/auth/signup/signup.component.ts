@@ -15,6 +15,7 @@ export class SignupComponent implements OnInit {
   username = '';
   email = '';
   password = '';
+  confirmPassword =''
   errorMessage = '';
 
   ngOnInit(): void {}
@@ -22,6 +23,10 @@ export class SignupComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
+    if(this.password !== this.confirmPassword) {
+      this.errorMessage = "Password and confirm password do not match"
+      return;
+    }
     this.authService.signUp(this.email, this.password).subscribe({
       next:(data)=>{
         this.router.navigate(['/confirm'])

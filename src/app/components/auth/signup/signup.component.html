@@ -9,6 +9,10 @@
           <label for="password">Password:</label>
           <input type="password" id="password" [(ngModel)]="password" name="password" required placeholder="Create a password" />
       </div>
+      <div class="input-group">
+        <label for="confirm">Confirm Password:</label>
+        <input type="password" id="confirm" [(ngModel)]="confirmPassword" name="confirm" required placeholder="Confirm your password" />
+    </div>
       <button type="submit">Sign Up</button>
       @if (errorMessage) {
         <div class="error">{{ errorMessage }}</div>
