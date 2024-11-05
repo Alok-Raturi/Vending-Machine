@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import { ItemsService } from '../../../services/items.service';
-import { TagModule } from 'primeng/tag';
-import { ButtonModule } from 'primeng/button';
+
 import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-buy-item',
   standalone: true,
-  imports: [TagModule,ButtonModule,CurrencyPipe,RouterLink],
+  imports: [CurrencyPipe,RouterLink],
   templateUrl: './buy-item.component.html',
   styleUrl: './buy-item.component.css',
 })
@@ -33,7 +32,7 @@ export class BuyItemComponent implements OnInit {
         this.code = params['code'];
         this.itemService
           .getItemByCode(this.code)
-          .subscribe((data: any) => (this.product = data.item.Item));
+          .subscribe((data: any) => (this.product = data.item));
       });
     }
   }

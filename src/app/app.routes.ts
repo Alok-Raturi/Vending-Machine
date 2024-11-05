@@ -16,6 +16,7 @@ import {
 import { inject } from '@angular/core';
 import { BuyItemComponent } from './components/user/buy-item/buy-item.component';
 import { AddProductComponent } from './components/admin/add-product/add-product.component';
+import { UpdateStocksComponent } from './components/admin/update-stocks/update-stocks.component';
 
 export const isLoggedIn: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -33,6 +34,7 @@ export const isLoggedIn: CanActivateFn = (
 export const isAdmin : CanActivateFn = (route:ActivatedRouteSnapshot, state: RouterStateSnapshot)=>{
   const router = inject(Router);
   const authService = inject(AuthService)
+  console.log(authService.roleValue)
   if(authService.roleValue){
     return true;
   }
@@ -74,8 +76,17 @@ export const routes: Routes = [
     canActivate:[isLoggedIn]
   },
   {
-    path:'add-product',
-    component: AddProductComponent,
-    canActivate:[isAdmin]
+    path:'admin',
+    children:[
+      {
+        path:'add-product',
+        component:AddProductComponent,
+        canActivate:[isLoggedIn,isAdmin]
+      },
+      {
+        path:'update-stock',
+        component:UpdateStocksComponent
+      }
+    ]
   }
 ];

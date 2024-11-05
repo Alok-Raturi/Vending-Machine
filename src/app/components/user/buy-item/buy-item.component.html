@@ -5,7 +5,7 @@
     <div class="product-card" >
       <img [src]="product?.imagesrc?.S" alt="{{ product?.name?.S }}" />
       <h3>{{ product?.name?.S }}</h3>
-      <p-tag [severity]="'danger'">Units left - {{ product?.stock?.N }}</p-tag>
+      <p >Units left - {{ product?.stock?.N }}</p>
       <p>Price: {{ product?.price?.N | currency:'USD' }}</p>
     </div>
   </div>

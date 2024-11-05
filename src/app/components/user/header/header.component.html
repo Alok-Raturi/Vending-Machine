@@ -5,41 +5,41 @@
 
   @if (isTokenAvailable) {
     <div>
-      <p-button
-      label="Add balance"
+      <button
       [routerLink]="['/add-balance']"
-      outlined="true"
-      severity="success" />
+      >Add balance</button>
     </div>
+
+    @if (isAdmin) {
+      <div>
+        <button
+        [routerLink]="['/admin/add-product']"
+        >Add product</button>
+      </div>
+      <div>
+        <button
+        [routerLink]="['/admin/update-stock']"
+        >Update Stock</button>
+      </div>
+    }
+
     <div>
-      <p-button
-      label="Logout"
-      (onClick)="logout()"
-      outlined="true"
-      severity="danger"
-      />
+      <button
+        (click)="logout()"
+      >Logout</button>
     </div>
+
   }@else{
   <div>
-    <p-button
-    label="Login"
-    outlined="true"
-    severity="danger"
-    [routerLink]="'/login'" />
+    <button
+    [routerLink]="['/login']"
+    >Login</button>
   </div>
   <div>
-    <p-button
-    label="Signup"
-    outlined="true"
-    severity="danger"
-    [routerLink]="'signup'" />
+    <button
+    [routerLink]="['signup']"
+    >Signup</button>
   </div>
 }
 </nav>
 
-<!-- {
-  "message": "Login successful",
-  "idToken": "eyJraWQiOiJRZXhPWnR6bVhGb1JzVXFXK1NOMkYrNjU1b1lDXC9nSWVpRjI0bXR3S2JRND0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyMTMzYmQzYS1jMDIxLTcwNDEtNzY2NC0yMTMxNTFiYTdiYTIiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmFwLXNvdXRoLTEuYW1hem9uYXdzLmNvbVwvYXAtc291dGgtMV9rUVNZWEhhMEUiLCJjb2duaXRvOnVzZXJuYW1lIjoiMjEzM2JkM2EtYzAyMS03MDQxLTc2NjQtMjEzMTUxYmE3YmEyIiwib3JpZ2luX2p0aSI6ImNhNDRhMTZjLTk5NDEtNGJlZS1iNjk5LTA3NWExMjQ5ZGU2MiIsImF1ZCI6IjY5c3RpMDVzY2d1MTNvZmNka2VvajgyNGRoIiwiZXZlbnRfaWQiOiI5ZTc5Mzg3OS0yNDQzLTRlZjctYTRhMi1kYjBjMzg1ZjVlMDYiLCJ0b2tlbl91c2UiOiJpZCIsImF1dGhfdGltZSI6MTczMDUyNzQzMCwiZXhwIjoxNzMwNTMxMDMwLCJpYXQiOjE3MzA1Mjc0MzAsImp0aSI6ImM3OWViNjQyLWMyM2ItNDNkNy1hMDFlLTE2ZGNmYjQ3MmJjMSIsImVtYWlsIjoiYWxvay5yYXR1cmkwOUBnbWFpbC5jb20ifQ.vqEFprjnL4TJlSfB4UDWQvFaHND6-U0k2yCmgnRkeJfLP1n595wwZzim4DnXxvCTT-SoaBfa5_Z1NlmAx4AToKX56yIXchZdGLsbsBKdIhMsQCi_KHAewSu50S4D-082MX5DuVLqyOhpIbgjt4xx74p88PKf2dHTVyxAIsp1nLHeYg9RoDLdOeeRjLkC0Ga4CTDtlEZT2pS2kGgknnAHRIEzB2E2SoYx7R8VnLmn3Y-NohrxQU26FwqbQvb_QhP-bqWjgdhtMBHcLchkirYlSa9j3cNfGDz7Pnnw25WKEnMgFuX4S8QuVpMu_Z0FnZdLEsncDF-vm8eKEjfH8NPbcQ",
-  "accessToken": "eyJraWQiOiI1XC95UFhhVGFYZTlkckIxSDY0c2x6M01kZStkMXlXelIxaTgrc2FRK3FhTT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIyMTMzYmQzYS1jMDIxLTcwNDEtNzY2NC0yMTMxNTFiYTdiYTIiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAuYXAtc291dGgtMS5hbWF6b25hd3MuY29tXC9hcC1zb3V0aC0xX2tRU1lYSGEwRSIsImNsaWVudF9pZCI6IjY5c3RpMDVzY2d1MTNvZmNka2VvajgyNGRoIiwib3JpZ2luX2p0aSI6ImNhNDRhMTZjLTk5NDEtNGJlZS1iNjk5LTA3NWExMjQ5ZGU2MiIsImV2ZW50X2lkIjoiOWU3OTM4NzktMjQ0My00ZWY3LWE0YTItZGIwYzM4NWY1ZTA2IiwidG9rZW5fdXNlIjoiYWNjZXNzIiwic2NvcGUiOiJhd3MuY29nbml0by5zaWduaW4udXNlci5hZG1pbiIsImF1dGhfdGltZSI6MTczMDUyNzQzMCwiZXhwIjoxNzMwNTMxMDMwLCJpYXQiOjE3MzA1Mjc0MzAsImp0aSI6IjJmN2RkMjIyLTcyODMtNDE2ZC1hZGRiLTQ0Y2I4MDQxMTZlMSIsInVzZXJuYW1lIjoiMjEzM2JkM2EtYzAyMS03MDQxLTc2NjQtMjEzMTUxYmE3YmEyIn0.hqGKh7_DkkDJlJNn2MImRtl5c-i6nqPnbKDmryGKEaBTPNCVHN4v2DW71-8LR0UHj7msAp3bTK3firviRJdRIdX4OtvhQmvpUE9yk61xgw3skMWpU27y78JS3mYFtUhsLgIZnesCdwTRPc9HxOPA2P17cs38ZOwmmbXOaoc9kkcU-33mDYsXDEBrvb7qBqqfTMX_Ruj4pPjAjdtw5eVigugDDOs-1pEAP-jV1UB9cv1RDCknfKCkXyBV0DOMIjbOAalCWN6YRkDPFLNfyyZbcypT0x7o0vYGS05UUKzW50zIuXSKiM2LUrngfgJd6Ovh6N8p6ZG8ECnThj3moF8XJw",
-  "refreshToken": "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.ElxF2kuhTPuDFHem0_UDTKv2Rbxtb8h3myxXHWYbrvxZUjLn_9qmNlxDj5NdS-WESWyl7rydW1jfVypSMDVWeyA8L2IUHojUicKrJxbi9IG38iC2EbVJfuLeKhuNZdPcK1zJ1yNIwsODePzEbaGOdeLp7O9UYv6dKXgRV-1Q9UsPYWgO88kN18objwJLj0eK3FsCWArxlrNwZ9ov43aqqKKKPeORezlfIFjdbK8Ko87OcF6DwIGp91QL2XcvLt2TD4LCr36WCixxgHdq2RRkDemta4KSGOkRRVqOLuRX6ZbCdIDWb1DL0Jzk6-WUZwKV49VZfK6U1Kz_S-NCBNRMVw.cMQBo1s_29iHNXxk.QlgSMLEPEeGyjB-Mt_apcA7L2FllnDUBmajHNKqlfL27oirQE8bJ29f7UdnVjiOuf7nssr6vLXo3UD_PNqhzL6anq0H2b_n6ay7Q6iPxKRE9zCUPEXu5pQL2pM-WLBP8cTXxKErI_kZC1PUaGky_Ec_38ClMB8wVznGJRLBsbEkrGQx8J42_SaBPzWTHPf8YQ_2Zq1DlICL4EdD1QVw1ewSShioui2VsSH1226DZO-_qxla1HuRqdI6unCri7h2aXSb66b4xOhwiSfpbjOcwDawvj2j8rgIVSBkOKUPRhD3I45Rlm8kTPwNvjJWonlRgve43_G4NURGDsVtHINVtvsUJluamyJ---g_gJlv6Wcf4cg4Ky6frm3oFJZZ4G7GT2H3ZBMF9vtII3xqLpWkUYqUEMo8ejKqrJVlooUzuJd7iHALLil-f5FH_53Y3kjC_pUD1Mqj-thvNoCsS2vHcZIz1-mQxX7WxjpjE1hAfb6N31K-F33BHIAo5tUA2HAzvhFlMrqTWqldZXqBOiotCcosH-7VbvCxgO5j5-RfFvstPKWCX4GR_-I7HoB50FWVkaM1IuKdWIsaf9hOpOn9VNjMkORw0tufy4YwZEHQTsJ-RD5FbAUSgyPm5i3gp-nJRqRvBtXWpqcQSIHcZDDXP5ACeNDFjFhoZkeKOsbIEoYmxeJqgTXlB7wdh9-6TfQf-ELuEqi1XiV6AToOXz0HArrCtY6kaH9OiI8LcWsmFB7Zqq2_X6UIAoh84ex7I1N-RO5Mf9k3EBDaI19uZt9_lgl1M6hGzAq7g2qny5zJ2vYezcx9lD8GOGRzlqJdzE5KwBOQj1xOrLgV1yqdqvxYK9xbeySKwWjYdOdi1-IijxgF7ztBa1eyHIKm9ghwBYD9AwvN41Sm_IwJOEGsqJaXYyjL4rT-yNa87GJaVFf01sM51e3dLD37hGCtngi54UpohwR7iUcT7W89I-4J6s11ExjZmgpXISQNAhUjo2MdnvM9fakaJhYjc7YsPoRpG6blpifB5DXB-i_WGHe86pvSaMYE1A37zackgpjRM6c4g5Swd22-y1-PVgpus2Yb8vvHNxVjGBYURj59_AkDdzkdgSJbisowpqadc-LsVDLCXQvTLbszimMbGQpRnPa3DRfUvKW9c_Agg5v9h9iOhNMVC-vv32pEOWwWXaBwXzVcg7jnhS6GsRoHFjGeGnRQOA3um8YBRq3u1wiP3lyBeqQ9HY0XTJck9zSZcLiNV8pc045eI4t07KHkMyrHZmQ542QMiZAf9y4jwx4VNlb4hBaOCbRTuPJfERhLUBRJzVwcUKcZ6mFAOj1X2I5Hqg2SZWA.W17g57maYH4KE8xYlMzEkg"
-} -->

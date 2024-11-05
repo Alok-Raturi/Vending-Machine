@@ -1,23 +1,27 @@
 import { Component } from '@angular/core';
-import {ButtonModule} from "primeng/button"
 import { AuthService } from '../../../services/auth.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [ButtonModule,RouterLink],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService,private router:Router){}
 
   get isTokenAvailable(){
     return this.authService.isTokenAvailable
   }
 
-  logout(){
-    this.authService.logout().subscribe((data)=>console.log('Data successfully logged out'))
+  get isAdmin(){
+    return this.authService.roleValue
   }
+
+  logout(){
+    this.authService.logout().subscribe((data)=>this.router.navigate(['/home']))
+  }
+
 }

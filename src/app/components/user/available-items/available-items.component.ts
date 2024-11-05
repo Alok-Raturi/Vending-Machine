@@ -31,11 +31,13 @@ interface Product{
 })
 export class AvailableItemsComponent implements OnInit {
   products:Product[]=[]
+  isloading:boolean=true;
   constructor(private itemService: ItemsService){}
 
   ngOnInit(): void {
     this.itemService.fetchItems().subscribe((data:any)=>{
       this.products=data;
+      this.isloading=false
     })
   }
 

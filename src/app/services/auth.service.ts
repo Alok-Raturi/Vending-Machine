@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
+import {jwtDecode} from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   email!: string;
-
   accessToken!: string;
   user!: any;
   role!:'User'|'Admin'
@@ -23,8 +23,19 @@ export class AuthService {
     }
   }
 
+  decodeToken(): any {
+    if (this.accessToken) {
+      return jwtDecode(this.accessToken);
+    }
+    return null;
+  }
+
   get roleValue(){
-    return this.role==='Admin'?1:0
+    let decodedToken = this.decodeToken()
+    if(decodedToken['cognito:groups']){
+      return this.decodeToken()['cognito:groups'][0]==='Admin'?1:0
+    }
+    return 0
   }
 
   signin(email: string, password: string) {
@@ -62,10 +73,8 @@ export class AuthService {
       .post(
         'https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/register',
         {
-          body: {
             email,
             password,
-          },
         }
       )
       .pipe(
@@ -81,10 +90,8 @@ export class AuthService {
     return this.http.post(
       'https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/confirm',
       {
-        body: {
           code,
           email: this.email,
-        },
       }
     );
   }
@@ -92,7 +99,7 @@ export class AuthService {
   logout() {
     return this.http
       .post(
-        'https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/logout',
+        'https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/logout',{},
         {
           headers: new HttpHeaders().set('Authorization', this.accessToken),
         }

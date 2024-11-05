@@ -9,18 +9,11 @@ export class ItemsService {
   constructor(private http:HttpClient) { }
 
   fetchItems(){
-    return this.http.get('https://484g7buxa0.execute-api.ap-south-1.amazonaws.com/v1/user/items')
+    return this.http.get('https://pkfsy8xzzi.execute-api.ap-south-1.amazonaws.com/v1/user/items')
   }
 
   getItemByCode(code:string){
-    return this.http.get(`https://484g7buxa0.execute-api.ap-south-1.amazonaws.com/v1/user/item?code=${code}`)
+    return this.http.get(`https://pkfsy8xzzi.execute-api.ap-south-1.amazonaws.com/v1/user/item/${code}`)
   }
 
-  updateQuantity(code:string){
-    return this.http.put(`https://484g7buxa0.execute-api.ap-south-1.amazonaws.com/v1/user/update-quantity`,{
-      body:{
-        code
-      }
-    })
-  }
 }
