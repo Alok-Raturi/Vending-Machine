@@ -133,4 +133,12 @@ export class AuthService {
       }
     );
   }
+
+  buyItem(code:string){
+    return this.http.post('https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/purchase/dispatch',{
+      'code':code
+    },{
+      headers:new HttpHeaders().set('Authorization',this.accessToken)
+    })
+  }
 }

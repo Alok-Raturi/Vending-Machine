@@ -15,6 +15,7 @@ import {
 } from '@angular/router';
 import { inject } from '@angular/core';
 import { BuyItemComponent } from './components/user/buy-item/buy-item.component';
+import { AddProductComponent } from './components/admin/add-product/add-product.component';
 
 export const isLoggedIn: CanActivateFn = (
   route: ActivatedRouteSnapshot,
@@ -29,6 +30,15 @@ export const isLoggedIn: CanActivateFn = (
   return false
 };
 
+export const isAdmin : CanActivateFn = (route:ActivatedRouteSnapshot, state: RouterStateSnapshot)=>{
+  const router = inject(Router);
+  const authService = inject(AuthService)
+  if(authService.roleValue){
+    return true;
+  }
+  router.navigate(['/home'])
+  return false;
+}
 
 
 export const routes: Routes = [
@@ -62,5 +72,10 @@ export const routes: Routes = [
     path:'buy/:code',
     component: BuyItemComponent,
     canActivate:[isLoggedIn]
+  },
+  {
+    path:'add-product',
+    component: AddProductComponent,
+    canActivate:[isAdmin]
   }
 ];

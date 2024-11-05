@@ -39,26 +39,10 @@ export class BuyItemComponent implements OnInit {
   }
 
   dispatch() {
-    let price = parseInt(this.product.price['N']);
-    let quantity = parseInt(this.product.stock['N']);
-    let balance = parseInt(this.user.balance);
-    if (quantity >= 1) {
-      if (balance >= price) {
-        this.authService.addAmount(`-${price}`).subscribe({
-          next: () => {
-            this.itemService.updateQuantity(this.code).subscribe({
-              next:()=>{
-                this.router.navigate(['/home']);
-              }
-            });
-          },
-        });
-      } else {
-        this.error = 'Insufficient balance. Please recharge your card';
+    this.authService.buyItem(this.code).subscribe({
+      next: (data)=>{
+        console.log(data)
       }
-    } else {
-      this.error = 'Product out of stock';
-    }
-    console.log(this.error)
+    })
   }
 }
