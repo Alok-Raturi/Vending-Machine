@@ -40,7 +40,7 @@ export class BuyItemComponent implements OnInit {
   dispatch() {
     this.authService.buyItem(this.code).subscribe({
       next: (data)=>{
-        console.log(data)
+        this.router.navigate(['/home'])
       }
     })
   }

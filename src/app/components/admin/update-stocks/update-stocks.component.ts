@@ -1,12 +1,47 @@
-import { Component } from '@angular/core';
+import { AuthService } from './../../../services/auth.service';
+import { Component, OnInit } from '@angular/core';
+import { UpdateItemComponent } from './update-item/update-item.component';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
+import { ItemsService } from '../../../services/items.service';
+
+interface Product{
+  Code:{
+    'S':string,
+  },
+  price:{
+    'N':string,
+  },
+  stock:{
+    'N':string,
+  },
+  imagesrc:{
+    'S':string,
+  },
+  name:{
+    'S':string,
+  },
+}
+
 
 @Component({
   selector: 'app-update-stocks',
   standalone: true,
-  imports: [],
+  imports: [UpdateItemComponent,SpinnerComponent],
   templateUrl: './update-stocks.component.html',
   styleUrl: './update-stocks.component.css'
 })
-export class UpdateStocksComponent {
+export class UpdateStocksComponent implements OnInit {
+  products:Product[]=[]
+  isloading=true
+  constructor(private itemsService: ItemsService){}
+
+  ngOnInit(): void {
+    this.itemsService.fetchItems().subscribe((data:any)=>{
+      this.products=data;
+      this.isloading=false
+    })
+  }
+
+
 
 }

@@ -3,6 +3,5 @@
   <h3>{{ product()?.name?.S }}</h3>
   <p >Units left - {{ product()?.stock?.N }}</p>
   <p>Price: {{ product()?.price?.N | currency:'INR' }}</p>
-  <p-button label="Buy" outlined="true" severity="success" [routerLink]="['/buy',product()?.Code?.S]" />
   <button [routerLink]="['/buy',product()?.Code?.S]">Buy</button>
 </div>

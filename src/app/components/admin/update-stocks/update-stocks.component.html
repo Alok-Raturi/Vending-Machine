@@ -1,1 +1,10 @@
-<p>update-stocks works!</p>
+
+<h1 class="heading">Available Items</h1>
+<div class="product-grid">
+  @if (isloading) {
+    <app-spinner/>
+  }@else { @for (item of products; track item?.Code?.S) {
+  <app-update-item [product]="item"></app-update-item>
+  } }
+</div>
+

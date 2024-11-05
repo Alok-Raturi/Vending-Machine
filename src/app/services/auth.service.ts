@@ -16,10 +16,18 @@ export class AuthService {
 
   setTokens() {
     if (typeof window !== 'undefined') {
-      let tokens = JSON.parse(localStorage.getItem('user-tokens') as string);
-      if (tokens) {
-        (this.email = tokens.email), (this.accessToken = tokens.accessToken),(this.role = tokens.role);
+      const accessTokenItem= JSON.parse(localStorage.getItem('user-tokens') as string) ;
+      if (!accessTokenItem) {
+          return ;
       }
+      const now = new Date();
+      if (now.getTime() > accessTokenItem.expireTime) {
+          localStorage.removeItem('user-tokens');
+          return ;
+      }
+
+      this.email = accessTokenItem.value.email
+      this.accessToken= accessTokenItem.value.accessToken
     }
   }
 
@@ -54,14 +62,17 @@ export class AuthService {
 
             this.accessToken = data.accessToken;
             this.role = data.role
-
+            const now = new Date();
+            const accessTokenItem = {
+              value: {
+                email:this.email,
+                accessToken: data.accessToken,
+              },
+              expireTime: now.getTime() +  60 * 60 * 1000
+          };
             localStorage.setItem(
               'user-tokens',
-              JSON.stringify({
-                email: email,
-                accessToken: data.accessToken,
-                role:data.role
-              })
+              JSON.stringify(accessTokenItem)
             );
           },
         })
@@ -131,9 +142,7 @@ export class AuthService {
     return this.http.post(
       'https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/update-balance',
       {
-        body: {
-          amount,
-        },
+        amount
       },
       {
         headers: new HttpHeaders().set('Authorization', this.accessToken),

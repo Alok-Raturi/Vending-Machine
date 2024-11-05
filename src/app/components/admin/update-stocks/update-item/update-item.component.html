@@ -1,0 +1,10 @@
+<div class="product-card" >
+  <img [src]="product.imagesrc.S" alt="{{ product.name.S }}" />
+  <h3>{{ product.name.S }}</h3>
+  <p >Units left - {{ product.stock.N }}</p>
+  <p>Price: {{ product.price.N | currency:'INR' }}</p>
+  <form (ngSubmit)="onSubmit(product.Code.S,quantity.value)">
+    <input type="text" placeholder="Enter the stock" #quantity>
+    <button>Update</button>
+  </form>
+</div>

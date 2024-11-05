@@ -16,7 +16,10 @@ export class UpdateBalanceComponent {
   amount='0'
 
   onSubmit(){
-    this.authService.addAmount(this.amount).subscribe()
-    this.router.navigate(['/home'])
+    this.authService.addAmount(this.amount).subscribe({
+      next:()=>{
+        this.router.navigate(['/home'])
+      }
+    })
   }
 }
