@@ -9,7 +9,6 @@ import { Router, RouterLink } from '@angular/router';
   imports: [FormsModule,RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
-  encapsulation: ViewEncapsulation.None,
 })
 export class SignupComponent implements OnInit {
   username = '';
@@ -17,6 +16,7 @@ export class SignupComponent implements OnInit {
   password = '';
   confirmPassword =''
   errorMessage = '';
+  isloading =false
 
   ngOnInit(): void {}
 
@@ -27,8 +27,10 @@ export class SignupComponent implements OnInit {
       this.errorMessage = "Password and confirm password do not match"
       return;
     }
+    this.isloading=true
     this.authService.signUp(this.email, this.password).subscribe({
       next:(data)=>{
+        this.isloading=false
         this.router.navigate(['/confirm'])
       },
       error: (err) => {

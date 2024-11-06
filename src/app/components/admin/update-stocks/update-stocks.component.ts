@@ -32,11 +32,13 @@ interface Product{
 })
 export class UpdateStocksComponent implements OnInit {
   products:Product[]=[]
-  isloading=true
+  isloading=false
   constructor(private itemsService: ItemsService){}
 
   ngOnInit(): void {
+    this.isloading=true
     this.itemsService.fetchItems().subscribe((data:any)=>{
+      this.isloading=false
       this.products=data;
       this.isloading=false
     })

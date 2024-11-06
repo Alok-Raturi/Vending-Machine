@@ -1,7 +1,11 @@
-<div>
-  <h1>Add Money to your account</h1>
-  <form (ngSubmit)="onSubmit()">
-    <input type="number" [(ngModel)]="amount" placeholder="Enter the amount" required name="amount"  >
-    <button type="submit">Add + </button>
-  </form>
-</div>
+<form (ngSubmit)="onSubmit()" class="confirmation-form">
+  <h3>Add Balance to your account</h3>
+  <div class="input-container">
+      <input type="text" [(ngModel)]="amount" placeholder="Enter code" required name="code">
+  </div>
+  <button type="submit" class="submit-button">Submit</button>
+</form>
+
+@if(isloading){
+  <app-spinner/>
+}

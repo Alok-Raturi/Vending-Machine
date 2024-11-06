@@ -1,45 +1,35 @@
 <nav class="container">
-  <div>
+  <div class="logo">
     <h1>WatchGuard Vending Machine</h1>
   </div>
 
-  @if (isTokenAvailable) {
+  <!-- Conditional rendering for token and admin -->
+  <div *ngIf="isTokenAvailable">
     <div>
-      <button
-      [routerLink]="['/add-balance']"
-      >Add balance</button>
+      <button [routerLink]="['/add-balance']">Add balance</button>
     </div>
 
-    @if (isAdmin) {
+    <div *ngIf="isAdmin">
       <div>
-        <button
-        [routerLink]="['/admin/add-product']"
-        >Add product</button>
+        <button [routerLink]="['/admin/add-product']">Add product</button>
       </div>
       <div>
-        <button
-        [routerLink]="['/admin/update-stock']"
-        >Update Stock</button>
+        <button [routerLink]="['/admin/update-stock']">Update Stock</button>
       </div>
-    }
-
-    <div>
-      <button
-        (click)="logout()"
-      >Logout</button>
     </div>
 
-  }@else{
-  <div>
-    <button
-    [routerLink]="['/login']"
-    >Login</button>
+    <div>
+      <button (click)="logout()">Logout</button>
+    </div>
   </div>
-  <div>
-    <button
-    [routerLink]="['signup']"
-    >Signup</button>
+
+  <!-- If no token is available -->
+  <div *ngIf="!isTokenAvailable">
+    <div>
+      <button [routerLink]="['/login']">Login</button>
+    </div>
+    <div>
+      <button [routerLink]="['signup']">Signup</button>
+    </div>
   </div>
-}
 </nav>
-

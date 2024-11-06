@@ -1,52 +1,71 @@
 
 .confirmation-form {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 40px 60px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
   max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin: 2rem  auto;
 }
 
 .confirmation-form h3 {
   text-align: center;
-  color: #333;
+  font-size: 24px;
+  color: #333333;
+  margin-bottom: 20px;
+  font-weight: 600;
 }
 
 .input-container {
   margin-bottom: 20px;
 }
 
-input[type="text"] {
+.input-container input {
   width: 100%;
-  padding: 10px;
-  border: 2px solid #007bff;
-  border-radius: 5px;
+  padding: 15px;
   font-size: 16px;
-  transition: border-color 0.3s;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-input[type="text"]:focus {
-  border-color: #0056b3;
-  outline: none;
+.input-container input:focus {
+  border-color: #6a11cb;
+  box-shadow: 0 0 8px rgba(106, 17, 203, 0.4);
 }
+
 
 .submit-button {
   width: 100%;
-  padding: 10px;
-  background-color: #007bff;
+  padding: 15px;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
   color: white;
+  font-size: 18px;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #0056b3;
+  background: linear-gradient(to right, #2575fc, #6a11cb);
+  transform: scale(1.05);
 }
 
 .submit-button:active {
-  transform: scale(0.98);
+  transform: scale(1);
+}
+
+@media (max-width: 480px) {
+  .confirmation-form {
+    padding: 30px;
+  }
+
+  .submit-button {
+    font-size: 16px;
+    padding: 12px;
+  }
 }

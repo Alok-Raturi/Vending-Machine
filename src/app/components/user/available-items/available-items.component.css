@@ -1,11 +1,106 @@
-.product-grid {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
+
+.heading {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 15px 0;
+  background: rgb(0, 0, 0);
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.heading{
+.heading:hover {
+  color: #ff7f50;
+  text-shadow: 0 0 10px rgba(255, 127, 80, 0.8);
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  justify-items: center;
+  margin-top: 30px;
+}
+
+.product-item {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
-  color: red;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.spinner {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  border: 8px solid transparent;
+  border-top: 8px solid #0072ff;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.product-item img {
+  max-width: 100%;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-item img:hover {
+  transform: scale(1.05);
+}
+
+.product-item .product-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin: 10px 0;
+}
+
+.product-item .product-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0072ff;
+  margin-top: 10px;
+  transition: color 0.3s ease;
+}
+
+.product-item:hover .product-price {
+  color: #ff7f50;
+}
+
+.product-grid {
+  transition: all 0.5s ease;
+}
+
+.product-item:hover {
+  transform: translateY(-10px);
+}
+
+.product-item h2 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
 }
