@@ -3,6 +3,9 @@
   <div class="input-container">
       <input type="text" [(ngModel)]="code" placeholder="Enter code" required name="code">
   </div>
+  @if (errorMessage) {
+    <div class="error">{{ errorMessage }}</div>
+  }
   <button type="submit" class="submit-button">Submit</button>
 </form>
 

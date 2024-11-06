@@ -69,3 +69,12 @@
     padding: 12px;
   }
 }
+
+.error {
+  color: #e74c3c;
+  margin: 20px;
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 500;
+
+}

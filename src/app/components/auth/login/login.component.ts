@@ -30,6 +30,8 @@ export class LoginComponent {
       },
       error:(error)=>{
         this.errorMessage= error['error']
+        this.isloading=false
+
       }
     })
 

@@ -34,7 +34,8 @@ export class SignupComponent implements OnInit {
         this.router.navigate(['/confirm'])
       },
       error: (err) => {
-        this.errorMessage = err.message;
+        this.errorMessage = err.error;
+        this.isloading=false
       },
     });
   }

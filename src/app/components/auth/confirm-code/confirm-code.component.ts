@@ -15,12 +15,21 @@ export class ConfirmCodeComponent {
   constructor(private authService:AuthService,private router:Router){}
   code = ''
   isloading = false
+  errorMessage=''
 
   OnSubmit(){
     this.isloading=true
-      this.authService.confirm(this.code).subscribe((data)=>{
-        this.isloading=false
-        this.router.navigate(['/login'])
+      this.authService.confirm(this.code).subscribe({
+        next:
+          (data)=>{
+            this.isloading=false
+            this.router.navigate(['/login'])
+          },
+        error:(err)=>{
+          this.errorMessage= err.error
+          this.isloading=false
+        }
+
       })
   }
 }
