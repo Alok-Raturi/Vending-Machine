@@ -3,13 +3,13 @@
     <h1>WatchGuard Vending Machine</h1>
   </div>
 
-  <!-- Conditional rendering for token and admin -->
-  <div *ngIf="isTokenAvailable">
+  @if(isTokenAvailable){
+  <div>
     <div>
       <button [routerLink]="['/add-balance']">Add balance</button>
     </div>
-
-    <div *ngIf="isAdmin">
+    @if(isAdmin){
+    <div>
       <div>
         <button [routerLink]="['/admin/add-product']">Add product</button>
       </div>
@@ -17,14 +17,14 @@
         <button [routerLink]="['/admin/update-stock']">Update Stock</button>
       </div>
     </div>
+    }
 
     <div>
       <button (click)="logout()">Logout</button>
     </div>
   </div>
-
-  <!-- If no token is available -->
-  <div *ngIf="!isTokenAvailable">
+  }@else{
+  <div>
     <div>
       <button [routerLink]="['/login']">Login</button>
     </div>
@@ -32,4 +32,9 @@
       <button [routerLink]="['signup']">Signup</button>
     </div>
   </div>
+  }
 </nav>
+
+@if (isLoading) {
+  <app-spinner/>
+}

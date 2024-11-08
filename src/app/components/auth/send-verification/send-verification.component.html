@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>YOU ARE NOT VERIFIED</h1>
+  <p>Please verify yourself to use this vending machine</p>
+  <button (click)="sendVerification()">Send Verification Code</button>
+
+  @if(errorMessage){
+  <p>{{ errorMessage }}</p>
+  } @if(isloading){
+  <app-spinner />
+  }
+</div>

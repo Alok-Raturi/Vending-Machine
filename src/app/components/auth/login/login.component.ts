@@ -1,4 +1,4 @@
-import { Component, DestroyRef, ViewEncapsulation } from '@angular/core';
+import { Component, DestroyRef, inject, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth.service';
 import { Router, RouterLink } from '@angular/router';
@@ -18,20 +18,25 @@ export class LoginComponent {
   password = '';
   errorMessage =''
   isloading = false
-
-  constructor(private authService:AuthService,private router:Router,private destroyRef:DestroyRef){}
+  // private router = inject(Router)
+  // private destroyRef =inject(DestroyRef)
+  constructor(private authService:AuthService,private router: Router,private destroyRef:DestroyRef){}
 
   onSubmit() {
     this.isloading =true
     let sub = this.authService.signin(this.email,this.password).subscribe({
       next:(data)=>{
+        console.log(data)
         this.isloading=false
         this.router.navigate(['/home'])
       },
       error:(error)=>{
+        if(error['status']===301){
+          this.router.navigate(['not-verified'])
+          return
+        }
         this.errorMessage= error['error']
         this.isloading=false
-
       }
     })
 

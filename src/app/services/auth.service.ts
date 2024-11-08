@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { tap } from 'rxjs';
 import {jwtDecode} from 'jwt-decode';
 
@@ -7,10 +7,8 @@ import {jwtDecode} from 'jwt-decode';
   providedIn: 'root',
 })
 export class AuthService {
-  email!: string;
+  email!:string;
   accessToken!: string;
-  user!: any;
-  role!:'User'|'Admin'
 
   constructor(private http: HttpClient) {}
 
@@ -20,14 +18,18 @@ export class AuthService {
       if (!accessTokenItem) {
           return ;
       }
+      const decodedJwt = jwtDecode(accessTokenItem.accessToken)
       const now = new Date();
-      if (now.getTime() > accessTokenItem.expireTime) {
+      if(!decodedJwt.exp ){
           localStorage.removeItem('user-tokens');
-          return ;
+          return;
+      }
+      if(now.getTime()/1000 > decodedJwt.exp){
+        localStorage.removeItem('user-tokens');
+        return;
       }
 
-      this.email = accessTokenItem.value.email
-      this.accessToken= accessTokenItem.value.accessToken
+      this.accessToken = accessTokenItem.accessToken
     }
   }
 
@@ -58,23 +60,21 @@ export class AuthService {
       .pipe(
         tap({
           next: (data: any) => {
-            this.email = email;
-
             this.accessToken = data.accessToken;
-            this.role = data.role
-            const now = new Date();
             const accessTokenItem = {
-              value: {
-                email:this.email,
                 accessToken: data.accessToken,
-              },
-              expireTime: now.getTime() +  60 * 60 * 1000
           };
             localStorage.setItem(
               'user-tokens',
               JSON.stringify(accessTokenItem)
             );
           },
+          error:(error)=>{
+            if(error['status']==301){
+              this.email=email
+              console.log(email)
+            }
+          }
         })
       );
   }
@@ -126,7 +126,7 @@ export class AuthService {
   }
 
   get isTokenAvailable() {
-    return this.accessToken && this.email;
+    return this.accessToken ;
   }
 
   getUser() {
@@ -156,5 +156,15 @@ export class AuthService {
     },{
       headers:new HttpHeaders().set('Authorization',this.accessToken)
     })
+  }
+
+  get isSignedUp(){
+    return this.email
+  }
+
+  sendVerificationCode(){
+    return this.http.post('https://fyid9ylv3a.execute-api.ap-south-1.amazonaws.com/v1/auth/resend-code',{
+      email: this.email
+    });
   }
 }

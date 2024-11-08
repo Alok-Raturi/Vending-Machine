@@ -5,42 +5,18 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { ConfirmCodeComponent } from './components/auth/confirm-code/confirm-code.component';
 import { UpdateBalanceComponent } from './components/auth/update-balance/update-balance.component';
-
-
-import {
-  ActivatedRouteSnapshot,
-  CanActivateFn,
-  Router,
-  RouterStateSnapshot,
-} from '@angular/router';
-import { inject } from '@angular/core';
 import { BuyItemComponent } from './components/user/buy-item/buy-item.component';
 import { AddProductComponent } from './components/admin/add-product/add-product.component';
 import { UpdateStocksComponent } from './components/admin/update-stocks/update-stocks.component';
+import { SendVerificationComponent } from './components/auth/send-verification/send-verification.component';
+import { isLoggedIn } from './guards/is-logged-in.guard';
+import { isAdmin } from './guards/is-admin.guard';
 
-export const isLoggedIn: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-) => {
-  const router = inject(Router);
-  const authService = inject(AuthService)
-  if(authService.isTokenAvailable){
-    return true;
-  }
-  router.navigate(['/login'])
-  return false
-};
 
-export const isAdmin : CanActivateFn = (route:ActivatedRouteSnapshot, state: RouterStateSnapshot)=>{
-  const router = inject(Router);
-  const authService = inject(AuthService)
-  console.log(authService.roleValue)
-  if(authService.roleValue){
-    return true;
-  }
-  router.navigate(['/home'])
-  return false;
-}
+
+
+
+
 
 
 export const routes: Routes = [
@@ -51,7 +27,7 @@ export const routes: Routes = [
   },
   {
     path:'home',
-    component: AvailableItemsComponent
+    component: AvailableItemsComponent,
   },
   {
     path:'login',
@@ -64,6 +40,10 @@ export const routes: Routes = [
   {
     path:'confirm',
     component:ConfirmCodeComponent,
+  },
+  {
+    path:'not-verified',
+    component:SendVerificationComponent
   },
   {
     path:'add-balance',
